@@ -5,6 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mergington High School Activities</title>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Activity card styles */
+      .activity-card {
+        background: #ffffff;
+        border: 1px solid #e6e9ef;
+        border-radius: 10px;
+        padding: 16px;
+        margin: 12px 0;
+        box-shadow: 0 6px 18px rgba(21, 33, 62, 0.06);
+      }
+      .activity-card h4 {
+        margin: 0 0 6px 0;
+        color: #0b3b6f;
+        font-size: 1.1rem;
+      }
+      .activity-card p.activity-desc {
+        margin: 0 0 10px 0;
+        color: #444;
+        font-size: 0.95rem;
+      }
+
+      /* Participants section */
+      .participants {
+        background: #f7fbff;
+        border-radius: 8px;
+        padding: 10px;
+      }
+      .participants h5 {
+        margin: 0 0 8px 0;
+        font-size: 0.95rem;
+        color: #0b3b6f;
+      }
+      .participants-list {
+        margin: 0 0 0 18px;
+        padding: 0;
+        list-style: disc;
+        color: #222;
+      }
+      .participants-list li {
+        margin-bottom: 6px;
+        font-size: 0.92rem;
+      }
+      .no-participants {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #6b7280;
+        display: none;
+      }
+      /* Show message when list is empty */
+      .participants-list:empty + .no-participants {
+        display: block;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -40,6 +93,22 @@
         <div id="message" class="hidden"></div>
       </section>
     </main>
+
+    <!-- Template for activity cards (JS can clone and populate) -->
+    <template id="activity-card-template">
+      <article class="activity-card">
+        <h4 class="activity-title">Activity Title</h4>
+        <p class="activity-desc">Short description of the activity.</p>
+
+        <div class="participants" aria-live="polite">
+          <h5>Participants</h5>
+          <ul class="participants-list">
+            <!-- JS should append <li>Student Name</li> items here -->
+          </ul>
+          <p class="no-participants">No participants yet.</p>
+        </div>
+      </article>
+    </template>
 
     <footer>
       <p>&copy; 2023 Mergington High School</p>
