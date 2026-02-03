@@ -15,17 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Populate activities list
       Object.entries(activities).forEach(([name, details]) => {
-        const activityCard = document.createElement("div");
-        activityCard.className = "activity-card";
+        const template = document.getElementById("activity-card-template");
+        const activityCard = template.content.cloneNode(true);
 
         const spotsLeft = details.max_participants - details.participants.length;
 
-        activityCard.innerHTML = `
-          <h4>${name}</h4>
-          <p>${details.description}</p>
-          <p><strong>Schedule:</strong> ${details.schedule}</p>
-          <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
-        `;
+        // Populate card content
+        activityCard.querySelector(".activity-title").textContent = name;
+        activityCard.querySelector(".activity-desc").textContent = details.description;
+
+        // Add schedule and availability info
+        const infoDiv = document.createElement("p");
+        infoDiv.innerHTML = `<strong>Schedule:</strong> ${details.schedule}<br><strong>Availability:</strong> ${spotsLeft} spots left`;
+        activityCard.querySelector(".activity-desc").after(infoDiv);
+
+        // Populate participants list
+        const participantsList = activityCard.querySelector(".participants-list");
+        details.participants.forEach((participant) => {
+          const li = document.createElement("li");
+          li.textContent = participant;
+          participantsList.appendChild(li);
+        });
 
         activitiesList.appendChild(activityCard);
 
