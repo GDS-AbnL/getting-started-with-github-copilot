@@ -41,6 +41,23 @@
       </section>
     </main>
 
+    <!-- Template for activity cards (JS can clone and populate) -->
+    <template id="activity-card-template">
+      <article class="activity-card">
+        <h4 class="activity-title">Activity Title</h4>
+        <p class="activity-desc">Short description of the activity.</p>
+
+        <div class="participants" aria-live="polite">
+          <h5>Participants</h5>
+          <ul class="participants-list">
+            <!-- JS should append <li>Student Name</li> items here -->
+          </ul>
+          <p class="no-participants">No participants yet.</p>
+        </div>
+        <input type="hidden" class="activity-name" value="" />
+      </article>
+    </template>
+
     <footer>
       <p>&copy; 2023 Mergington High School</p>
     </footer>
